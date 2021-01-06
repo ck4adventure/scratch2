@@ -5,6 +5,7 @@
 #  id          :bigint           not null, primary key
 #  category    :integer          default("other")
 #  description :text
+#  image       :string           default("https://raw.githubusercontent.com/do-community/react_rails_recipe/master/app/assets/images/Sammy_Meal.jpg")
 #  name        :string           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -25,6 +26,7 @@ class Food < ApplicationRecord
     sides: 7,
     soups: 8,
     sweets: 9,
+    pantry: 10,
     other: 99,
   }
   validates :name, presence: true, uniqueness: true

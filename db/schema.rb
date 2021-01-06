@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2021_01_05_201731) do
     t.string "name", null: false
     t.text "description"
     t.integer "category", default: 99
+    t.string "image", default: "https://raw.githubusercontent.com/do-community/react_rails_recipe/master/app/assets/images/Sammy_Meal.jpg"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category"], name: "index_foods_on_category"

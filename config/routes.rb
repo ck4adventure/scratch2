@@ -1,7 +1,12 @@
 # == Route Map
 #
 #                                Prefix Verb   URI Pattern                                                                              Controller#Action
+#                    api_v1_foods_index GET    /api/v1/foods/index(.:format)                                                            api/v1/foods#index
+#                   api_v1_foods_create POST   /api/v1/foods/create(.:format)                                                           api/v1/foods#create
+#                                api_v1 GET    /api/v1/show/:id(.:format)                                                               api/v1/foods#show
+#                                       DELETE /api/v1/destroy/:id(.:format)                                                            api/v1/foods#destroy
 #                                  root GET    /                                                                                        static_pages#root
+#                                       GET    /*path(.:format)                                                                         static_pages#root
 #         rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                  action_mailbox/ingresses/postmark/inbound_emails#create
 #            rails_relay_inbound_emails POST   /rails/action_mailbox/relay/inbound_emails(.:format)                                     action_mailbox/ingresses/relay/inbound_emails#create
 #         rails_sendgrid_inbound_emails POST   /rails/action_mailbox/sendgrid/inbound_emails(.:format)                                  action_mailbox/ingresses/sendgrid/inbound_emails#create
@@ -24,6 +29,17 @@
 #                  rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create
 
 Rails.application.routes.draw do
+  # particular exact routes from tutorial
+  namespace :api do
+    namespace :v1 do
+      get 'foods/index'
+      post 'foods/create'
+      get '/show/:id', to: 'foods#show'
+      delete '/destroy/:id', to: 'foods#destroy'
+    end
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'static_pages#root'
+  # supposed to handle all other requests this way?
+  get '/*path' => 'static_pages#root'
 end
